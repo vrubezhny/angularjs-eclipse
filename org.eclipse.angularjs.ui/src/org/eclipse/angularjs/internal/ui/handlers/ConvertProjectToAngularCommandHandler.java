@@ -31,8 +31,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import tern.eclipse.ide.core.TernNature;
-
 /**
  * Convert selected project to Angular project.
  * 
@@ -76,13 +74,11 @@ public class ConvertProjectToAngularCommandHandler extends AbstractHandler {
 				List newNatures = new LinkedList();
 				String[] natures = projectDescription.getNatureIds();
 				for (int c = 0; c < natures.length; ++c) {
-					if (!AngularNature.ID.equals(natures[c]) && 
-							!TernNature.ID.equals(natures[c])) {
+					if (!AngularNature.ID.equals(natures[c])) {
 						newNatures.add(natures[c]);
 					}
 				}
 				newNatures.add(AngularNature.ID);
-				newNatures.add(TernNature.ID);
 
 				projectDescription.setNatureIds((String[]) newNatures
 						.toArray(new String[newNatures.size()]));
